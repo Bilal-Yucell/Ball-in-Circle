@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BallRotation : MonoBehaviour
 {
+
     [SerializeField] private float speed;
 
     private void FixedUpdate()
