@@ -7,19 +7,29 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] private Vector2 range;
     [SerializeField] private GameObject enemy;
+    [SerializeField] private GameObject bonus;
 
 
     void Start()
     {
         StartCoroutine(SpawnEnemy());
+        StartCoroutine(SpawnBonus());
     }
 
     private IEnumerator SpawnEnemy()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
         Vector2 spawnPos = transform.position + new Vector3(0, Random.Range(-range.y, range.y));
         Instantiate(enemy, spawnPos, Quaternion.identity);
         StartCoroutine(SpawnEnemy());
+    }
+
+    private IEnumerator SpawnBonus()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Vector2 spawnPos = transform.position + new Vector3(0, Random.Range(-range.y, range.y));
+        Instantiate(bonus, spawnPos, Quaternion.identity);
+        StartCoroutine(SpawnBonus());
     }
 
 }
